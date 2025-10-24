@@ -1,16 +1,25 @@
-import { ControlledForm } from "./ControlledForm"
-import { UncontrolledForm } from "./UncontrolledForm"
-
+import { ControlledForm } from "./ControlledForm";
+import { ControlledModal } from "./ControlledModal";
+import { Modal } from "./Modal";
+import { UncontrolledForm } from "./UncontrolledForm";
+import { useState } from "react";
 function App() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <UncontrolledForm />
-      <ControlledForm
-        initialName="Shaun"
-        initialAge={123}
-        initialHairColor="Brown" />
+      <ControlledModal
+        shouldShow={showModal}
+        onRequestClose={() => setShowModal(false)}
+      >
+        <ControlledForm
+          initialName="gita"
+          initialAge={123}
+          initialHairColor="Brown"
+        />
+      </ControlledModal>
+      <button onClick={() => setShowModal(true)}>Open Modal</button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
